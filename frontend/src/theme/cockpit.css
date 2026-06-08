@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.47.0/iconfont/tabler-icons.min.css');
+
+/* ---- Cockpit design tokens + component layer (scoped under .cockpit) ---- */
+.cockpit{
+  --bg:#04060c; --panel:linear-gradient(160deg,rgba(13,21,35,.72),rgba(8,13,22,.72));
+  --cyan:#36c9ff; --teal:#1fe7c2; --mag:#e85cf0; --amber:#f2b03a; --grn:#3ee08f; --red:#ff5b76;
+  --txt:#cbe3f7; --muted:#6c89a8; --line:rgba(54,201,255,.15); --line2:rgba(54,201,255,.30);
+  position:relative; min-height:100vh; color:var(--txt);
+  font-family:'JetBrains Mono',monospace;
+  background:
+    radial-gradient(1200px 620px at 80% -15%, rgba(54,201,255,.06), transparent 60%),
+    radial-gradient(900px 520px at 4% 115%, rgba(232,92,240,.045), transparent 60%), var(--bg);
+}
+.cockpit *{box-sizing:border-box;margin:0;padding:0}
+.ck-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.13;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:50px 50px;mask:radial-gradient(circle at 50% 25%,#000,transparent 92%)}
+.ck-tape{position:relative;z-index:3;height:30px;border-bottom:1px solid var(--line);overflow:hidden;display:flex;align-items:center;background:rgba(7,12,20,.7)}
+.ck-tape .run{display:inline-flex;gap:34px;white-space:nowrap;padding-left:100%;animation:ck-tape 38s linear infinite;font-size:12.5px;letter-spacing:.04em}
+.ck-tape b{color:#dbeeff;font-weight:500}
+@keyframes ck-tape{to{transform:translateX(-100%)}}
+.ck-shell{position:relative;z-index:2;display:grid;grid-template-columns:90px 1fr;grid-template-rows:62px 1fr}
+.ck-head{grid-column:1/3;display:flex;align-items:center;gap:20px;padding:0 28px;border-bottom:1px solid var(--line)}
+.ck-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.13em;font-size:19px;color:#eaf6ff}
+.ck-brand span{color:var(--cyan)}
+.ck-brand small{display:block;font-family:'JetBrains Mono';font-weight:400;font-size:10px;letter-spacing:.34em;color:var(--muted);margin-top:1px}
+.ck-hgap{flex:1}
+.ck-chip{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;
+  padding:7px 13px;border:1px solid var(--line);color:var(--muted);background:rgba(8,14,24,.5);border-radius:3px}
+.ck-dot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 7px var(--grn);animation:ck-pulse 2.4s infinite}
+@keyframes ck-pulse{50%{opacity:.35}}
+.ck-clock{font-family:'Space Grotesk',sans-serif;font-size:17px;color:var(--cyan);letter-spacing:.04em;min-width:118px;text-align:right}
+.ck-clock i{display:block;font-style:normal;font-family:'JetBrains Mono';font-size:10px;color:var(--muted);letter-spacing:.18em}
+.ck-nav{border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:18px;
+  position:sticky;top:0;align-self:start;height:100vh;z-index:4;background:rgba(6,11,19,.55);backdrop-filter:blur(6px)}
+.ck-nav a{width:64px;height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  color:var(--muted);text-decoration:none;font-size:10px;letter-spacing:.06em;border-left:2px solid transparent;cursor:pointer}
+.ck-nav a i{font-size:22px}
+.ck-nav a.on{color:var(--cyan);border-left-color:var(--cyan);background:rgba(54,201,255,.06)}
+.ck-nav a:hover{color:var(--txt)}
+.ck-main{padding:22px 28px 48px;overflow:auto}
+.ck-row{display:grid;gap:15px;margin-bottom:15px}
+.ck-hero{grid-template-columns:1.7fr 1fr}
+.ck-r4{grid-template-columns:repeat(4,1fr)} .ck-r2{grid-template-columns:1.55fr 1fr} .ck-r2b{grid-template-columns:1fr 1fr}
+.ck-panel{position:relative;background:var(--panel);border:1px solid var(--line);padding:16px 18px;border-radius:4px;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)}
+.ck-panel.br::before{content:"";position:absolute;width:13px;height:13px;left:7px;bottom:7px;border:1px solid var(--line2);border-top:none;border-right:none}
+.ck-ph{display:flex;align-items:center;justify-content:space-between;font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.ck-ph b{color:var(--cyan);font-weight:500}
+.ck-big{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:46px;color:#eafbff;letter-spacing:.01em;line-height:1}
+.ck-bigsub{font-size:13px;color:var(--muted);margin-top:6px}
+.ck-metric .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ck-metric .val{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:30px;margin-top:8px;color:#eaf6ff}
+.ck-metric .sub{font-size:13px;margin-top:5px}
+.ck-up{color:var(--grn)} .ck-down{color:var(--red)} .ck-neu{color:var(--muted)} .ck-mag{color:#f0c8ff} .ck-amber{color:var(--amber)} .ck-grn{color:var(--grn)}
+.cockpit table{width:100%;border-collapse:collapse;font-size:14px}
+.cockpit th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:right;padding:7px 6px;border-bottom:1px solid var(--line)}
+.cockpit th:first-child,.cockpit td:first-child{text-align:left}
+.cockpit td{padding:8px 6px;text-align:right;border-bottom:1px solid rgba(54,201,255,.05)}
+.cockpit tr:hover td{background:rgba(54,201,255,.04)}
+.ck-tag{font-size:11px;padding:2px 8px;border:1px solid var(--line2);border-radius:2px}
+.ck-tag.g{color:var(--grn);border-color:rgba(62,224,143,.4);background:rgba(62,224,143,.06)}
+.ck-tag.r{color:var(--red);border-color:rgba(255,91,118,.4);background:rgba(255,91,118,.06)}
+.ck-tag.a{color:var(--amber);border-color:rgba(242,176,58,.4);background:rgba(242,176,58,.06)}
+.ck-led{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;padding:6px 0;border-bottom:1px solid rgba(54,201,255,.05)}
+.ck-led .l{width:8px;height:8px;border-radius:50%;display:inline-block;margin-left:8px}
+.ck-bar{height:9px;background:rgba(54,201,255,.07);border:1px solid var(--line);position:relative;overflow:hidden;border-radius:2px}
+.ck-bar i{position:absolute;left:0;top:0;bottom:0;width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.ck-sectit{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;letter-spacing:.15em;text-transform:uppercase;margin:26px 0 13px;padding-top:15px;border-top:1px solid rgba(54,201,255,.14);display:flex;align-items:center;gap:10px}
+.ck-sectit.m{color:var(--mag);border-color:rgba(232,92,240,.18)} .ck-sectit.c{color:var(--cyan)}
+.ck-sb{display:flex;gap:9px;flex-wrap:wrap}
+.ck-sb .h{display:flex;flex-direction:column;align-items:center;gap:5px;width:62px;padding:10px 0;border:1px solid var(--line);border-radius:3px}
+.ck-sb .h .n{font-size:12px;color:var(--muted)} .ck-sb .h .s{font-size:18px}
+.ck-tele{display:flex;gap:30px;flex-wrap:wrap;font-size:13px}
+.ck-foot{color:var(--muted);font-size:11px;letter-spacing:.06em;margin-top:22px;text-align:center}
+.ck-draw{stroke-dasharray:1400;stroke-dashoffset:1400;animation:ck-draw 2.2s ease forwards .2s}
+@keyframes ck-draw{to{stroke-dashoffset:0}}
